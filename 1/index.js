@@ -1,22 +1,19 @@
 const lineByLine = require('linebyline');
+
+const input = [];
 let result = 0;
-const seen = [0];
-let twice;
+
+const tally = change => {
+  result += change;
+};
 
 lineByLine('input.txt')
-  // Each line read triggers this event
-  .on('line', frequency => {
-    const change = parseInt(frequency, 10);
-    result += change;
-
-    if (seen.includes(change) && !twice) {
-      twice = change;
-    }
-
-    seen.push(change);
+  .on('line', line => {
+    input.push(parseInt(line, 10));
   })
-  // When all lines have been read this event is triggered
   .on('end', () => {
-    console.log(`Finished! Final value is ${result}. First value reached twice is ${twice}`);
+    input.forEach(number => tally(number));
+    console.log(`Finished! Final value is ${result}.`);
   })
   .on('error', err => console.error('Error while reading in lines from input.txt', err));
+
