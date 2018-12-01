@@ -1,3 +1,5 @@
+const start = Date.now();
+
 const lineByLine = require('linebyline');
 const { oneLine } = require('common-tags');
 
@@ -34,7 +36,7 @@ lineByLine('input.txt')
     while (twice === 'g') {
       input.forEach(number => tally(number));
     }
-    console.log(`Finished! First value reached twice is ${twice}.`);
+    console.log(`Finished! First value reached twice is ${twice}. Took ${Date.now() - start}ms`);
   })
   .on('error', err => console.error('Error while reading in lines from input.txt', err));
 
