@@ -40,20 +40,23 @@ module.exports = (file = 'input.txt') => {
     for (let i = 0; i < string.length; i++) {
       const char = string[i];
 
-      count[char] = (count[char] || 0) + 1;
+      count[char] += 1;
     }
 
     let foundTwice = false;
     let foundThrice = false;
 
-    for (const occurrences in count) {
+    const values = Object.values(count);
+    for (let i = 0; i < count.length; i++) {
+      const occurrences = values[i];
+
       if (occurrences === 2 && !foundTwice) {
-        twice++;
+        twice += 1;
         foundTwice = true;
       }
 
       if (occurrences === 3 && !foundThrice) {
-        thrice++;
+        thrice += 1;
         foundThrice = true;
       }
     }
