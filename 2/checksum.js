@@ -47,7 +47,7 @@ module.exports = (file = 'input.txt') => {
     let foundThrice = false;
 
     const values = Object.values(count);
-    for (let i = 0; i < count.length; i++) {
+    for (let i = 0; i < 25; i++) {
       const occurrences = values[i];
 
       if (occurrences === 2 && !foundTwice) {
