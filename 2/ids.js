@@ -1,13 +1,11 @@
 const { readFileSync } = require('fs');
 
-// module.exports = (file = 'input.txt') => {
 module.exports = (file = 'input.txt') => {
   const lines = readFileSync(file, 'utf-8').split('\n');
 
   let final = '';
   let differentIndex;
 
-  // lines.forEach(cur => {
   for (let i = 0; i < lines.length - 1; i++) {
     if (final) break;
 
