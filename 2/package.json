@@ -1,0 +1,15 @@
+{
+  "author": "Jonah Snider <me@jonahsnider.ninja> (https://jonahsnider.ninja)",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-amber": "^2.0.0"
+  },
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "name": "aoc-2018-2",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "version": "1.0.0"
+}
