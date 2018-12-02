@@ -1,7 +1,8 @@
 const checksumFn = require('./checksum');
 const idsFn = require('./ids');
+const { join } = require('path');
 
-const file = 'input.txt';
+const file = join(__dirname, 'input.txt');
 
 const { checksum, twice, thrice } = checksumFn(file);
 
