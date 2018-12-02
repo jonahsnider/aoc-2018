@@ -1,6 +1,8 @@
 {
   "author": "Jonah Snider <me@jonahsnider.ninja> (https://jonahsnider.ninja)",
-  "dependencies": {},
+  "dependencies": {
+    "benchmark": "^2.1.4"
+  },
   "devDependencies": {
     "eslint": "^5.9.0",
     "eslint-config-amber": "^2.0.0"
@@ -9,7 +11,9 @@
   "main": "index.js",
   "name": "aoc-2018-2",
   "scripts": {
-    "lint": "eslint ."
+    "benchmark": "node benchmark.js",
+    "lint": "eslint .",
+    "start": "node index.js"
   },
-  "version": "1.0.0"
+  "version": "2.0.0"
 }
