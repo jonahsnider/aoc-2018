@@ -10,10 +10,9 @@
     "eslint-config-amber": "^2.0.0"
   },
   "license": "Apache-2.0",
-  "main": "index.js",
   "name": "aoc-2018",
   "scripts": {
     "lint": "eslint ."
   },
-  "version": "3.1.3"
+  "version": "3.0.0"
 }
