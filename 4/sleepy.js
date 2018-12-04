@@ -1,5 +1,5 @@
 const { readFileSync } = require('fs');
-const { compareAsc } = require('date-fns');
+const { compareAsc, parse } = require('date-fns');
 
 module.exports = (file = 'input.txt') => {
   const lines = readFileSync(file, 'utf-8').split('\n');
@@ -7,7 +7,9 @@ module.exports = (file = 'input.txt') => {
   const events = [];
 
   const regex = {
-    guard: /\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2})\] Guard #(\d{4}) begins shift/
+    guard: /\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2})\] Guard #(\d+) begins shift/,
+    asleep: /\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2})\] falls asleep/,
+    awake: /\[(\d{4}-\d{2}-\d{2} \d{2}:\d{2})\] wakes up/
   };
 
   lines.forEach(line => {
@@ -16,16 +18,38 @@ module.exports = (file = 'input.txt') => {
       const parsed = regex.guard.exec(line);
 
       const guard = {
-        date: new Date(parsed[1]),
+        date: parse(parsed[1], 'yyyy-MM-dd HH:mm'),
         type: 'guard',
         id: parsed[2]
       };
 
       events.push(guard);
+    } else if (regex.asleep.test(line)) {
+      // Guard fell asleep
+      const parsed = regex.asleep.exec(line);
+
+      const time = {
+        date: parse(parsed[1], 'yyyy-MM-dd HH:mm'),
+        type: 'asleep'
+      };
+
+      events.push(time);
+    } else if (regex.awake.test(line)) {
+      // Guard just woke up
+
+      const parsed = regex.awake.exec(line);
+
+      const time = {
+        date: parse(parsed[1], 'yyyy-MM-dd HH:mm'),
+        type: 'awake'
+      };
+
+      events.push(time);
     }
   });
 
-  const timeline = events.sort((a, b) => compareAsc(a, b));
+  const timeline = events.sort((a, b) => compareAsc(a.date, b.date));
+  console.log(timeline);
 
   timeline.forEach(event => {
     if (event.type === 'guard') {
